@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wardline Health | Wardline for Chronic-Care Follow-Up</title>
+<meta name="description" content="Wardline Health is exploring Wardline, a voice-and-text AI assistant concept for chronic-care follow-up.">
+<meta name="theme-color" content="#102739">
+<style>
+:root {
+  color-scheme: light;
+  --paper: #f8f8f2; --navy: #102739; --ink: #182f3d;
+  --muted: #465d65; --line: #ccd8d3; --teal: #006558;
+  --mint: #9ae6d5; --amber: #fbc675; --white: #f8fbf8;
+  font-family: "DM Sans", "Segoe UI", system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.55; }
+a { color: inherit; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+section[id], main[id] { scroll-margin-top: 1.5rem; }
+h1, h2, h3, p, figure, dl, dd { margin: 0; }
+h1, h2 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; letter-spacing: -.053em; line-height: .99; }
+h2 { font-size: clamp(2.55rem, 5vw, 4.8rem); }
+h3 { font-size: clamp(1.34rem, 2.45vw, 1.9rem); letter-spacing: -.035em; line-height: 1.12; }
+.wrap { width: min(100% - 3rem, 76rem); margin-inline: auto; }
+.skip { position: absolute; z-index: 3; inset: .5rem auto auto .5rem; padding: .75rem; background: white; transform: translateY(-150%); }
+.skip:focus { transform: none; }
+header { border-bottom: 1px solid var(--line); }
+.header-row { min-height: 5.15rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; }
+.brand { display: inline-flex; align-items: center; gap: .75rem; text-decoration: none; }
+.brand-mark { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: .65rem; background: var(--navy); }
+.brand-mark::before { content: ""; width: 1.15rem; height: 1.15rem; background: var(--mint); clip-path: polygon(0 22%, 32% 22%, 48% 68%, 69% 6%, 100% 6%, 100% 24%, 82% 24%, 53% 100%, 40% 100%, 20% 41%, 0 41%); }
+.brand-name { display: grid; font-weight: 750; font-size: 1rem; line-height: 1.18; }
+.brand-name small { color: var(--teal); font-size: .76rem; font-weight: 700; }
+nav { display: flex; flex-wrap: wrap; gap: .2rem clamp(.65rem, 2.3vw, 2.1rem); }
+nav a { font-size: .9rem; font-weight: 700; padding-block: .55rem; text-decoration: none; }
+nav a:hover { text-decoration: underline; text-underline-offset: .25em; }
+.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(2.4rem, 5vw, 5rem); padding-block: clamp(3.4rem, 8vw, 7.3rem); }
+.eyebrow { color: var(--teal); text-transform: uppercase; font-size: .72rem; font-weight: 800; letter-spacing: .16em; }
+h1 { font-size: clamp(3rem, 5.3vw, 5.65rem); margin-block: .85rem 1.3rem; max-width: 14ch; }
+.lead { color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.23rem); max-width: 34ch; }
+.cta { display: inline-flex; align-items: center; gap: .8rem; margin-block: 1.65rem 1.5rem; padding: .8rem 1rem; border-radius: .35rem; background: var(--teal); color: white; text-decoration: none; font-size: .91rem; font-weight: 750; }
+.cta:hover { background: #004b41; }
+.cta:focus-visible { outline-color: var(--navy); }
+.status { font-size: .79rem; font-weight: 650; color: var(--muted); display: flex; align-items: baseline; gap: .6rem; max-width: 49ch; }
+.status::before { content: ""; flex: 0 0 .48rem; height: .48rem; border-radius: 50%; background: #9c5a10; }
+.demo { min-width: 0; color: var(--white); background: var(--navy); border-radius: 1.15rem; padding: clamp(1.15rem, 3vw, 2.15rem); box-shadow: 0 20px 45px #10273920; }
+.demo figcaption { display: flex; flex-wrap: wrap; gap: .45rem 1rem; align-items: baseline; justify-content: space-between; margin-bottom: 1.25rem; }
+.demo-title { font-size: clamp(1.15rem, 2vw, 1.5rem); letter-spacing: -.025em; font-weight: 750; }
+.synthetic { color: var(--amber); font-size: .74rem; font-weight: 700; }
+.journey { list-style: none; margin: 0; padding: .45rem .85rem; border: 1px solid #46636c; border-radius: .55rem; background-color: #142f41; background-image: linear-gradient(#b0e1d218 1px, transparent 1px), linear-gradient(90deg, #b0e1d218 1px, transparent 1px); background-size: 1.35rem 1.35rem; }
+.journey li { display: grid; grid-template-columns: .6rem 1fr; gap: .7rem; padding: .8rem .15rem; }
+.journey li + li { border-top: 1px solid #56777b; }
+.journey li::before { content: ""; width: .54rem; height: .54rem; margin-top: .48rem; border: 1px solid var(--mint); border-radius: 50%; background: var(--mint); }
+.journey strong { display: block; color: var(--white); font-size: .92rem; }
+.journey span { display: block; color: #d7e7e5; font-size: .82rem; }
+.section { padding-block: clamp(3.1rem, 7vw, 6.4rem); }
+.section h2 { margin-top: .55rem; }
+.problem { border-block: 1px solid var(--line); background: #e9f1ec; }
+.split { display: grid; grid-template-columns: .95fr 1fr; align-items: start; gap: 1.4rem clamp(2rem, 7vw, 7rem); }
+.section-copy { color: var(--muted); font-size: clamp(1.02rem, 1.5vw, 1.18rem); max-width: 49ch; }
+.problem .section-copy { align-self: center; }
+.product-head { margin-bottom: clamp(1.7rem, 4vw, 3rem); }
+.product-layout { display: grid; grid-template-columns: .76fr 1.24fr; gap: 1rem; }
+.panel { border: 1px solid var(--line); border-radius: .8rem; padding: clamp(1.3rem, 3vw, 2.25rem); background: #fffef9; }
+.panel h3 { margin-bottom: .9rem; }
+.panel p { color: var(--muted); max-width: 60ch; }
+.research { background: #e9f1ec; }
+.workflow { padding: 0; margin: 1.2rem 0; list-style: none; counter-reset: step; }
+.workflow li { counter-increment: step; display: grid; align-items: baseline; grid-template-columns: 2rem 1fr; gap: .45rem; padding-block: .6rem; border-bottom: 1px solid var(--line); }
+.workflow li::before { content: counter(step, decimal-leading-zero); font: 700 .73rem ui-monospace, monospace; color: var(--teal); }
+.team { border-top: 1px solid var(--line); }
+.person { border-left: 2px solid var(--teal); padding: .4rem 0 .4rem 1.2rem; }
+.person p { color: var(--muted); margin-top: .35rem; }
+.contact { background: var(--navy); color: var(--white); }
+.contact .eyebrow { color: var(--mint); }
+.contact .section-copy { color: #d7e7e5; }
+.contact dl { margin-top: 1.45rem; }
+.contact dl div { display: grid; grid-template-columns: 5rem 1fr; gap: .5rem; border-top: 1px solid #56777b; padding-block: .65rem; }
+.contact dt { color: var(--mint); font-weight: 700; }
+.contact dd { color: var(--white); }
+footer { background: var(--navy); color: var(--white); }
+.footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.1rem 2rem; align-items: center; border-top: 1px solid #56777b; padding-block: 1.45rem; }
+footer .brand-mark { background: #254352; }
+footer .brand-name small { color: var(--mint); }
+footer .status { color: #d7e7e5; }
+footer .status::before { background: var(--amber); }
+@media (max-width: 830px) {
+  .hero { grid-template-columns: 1fr; }
+  .demo { width: min(100%, 37rem); }
+  .product-layout, .split { grid-template-columns: 1fr; }
+}
+@media (max-width: 580px) {
+  .wrap { width: calc(100% - 2rem); }
+  .header-row { align-items: flex-start; flex-direction: column; padding-block: .85rem .4rem; gap: .35rem; }
+  nav { gap: .1rem .72rem; }
+  nav a { font-size: .83rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#home">Skip to content</a>
+<header>
+  <div class="wrap header-row">
+    <a class="brand" href="#home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Wardline Health<small>Wardline</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#problem">Problem</a><a href="#product">Product</a><a href="#team">Team</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="home" tabindex="-1">
+  <section class="wrap hero" aria-labelledby="hero-title">
+    <div>
+      <p class="eyebrow">Wardline</p>
+      <h1 id="hero-title">Follow-up care that keeps up with the people providing it.</h1>
+      <p class="lead">A voice-and-text AI assistant concept for nurses, care coordinators, and the patients they follow after discharge.</p>
+      <a class="cta" href="#product">Explore the concept<span aria-hidden="true">↓</span></a>
+      <p class="status">Wardline is in the concept stage. The product has yet to be built.</p>
+    </div>
+    <figure class="demo">
+      <figcaption><span class="demo-title">A day of follow-up</span><span class="synthetic">Illustrative concept</span></figcaption>
+      <ol class="journey" role="list">
+        <li><div><strong>Start with a briefing</strong><span>See who’s on the schedule, what happened last time, and what comes next.</span></div></li>
+        <li><div><strong>Log the visit</strong><span>Describe what happened in plain language by voice or text.</span></div></li>
+        <li><div><strong>Stay in touch</strong><span>Give patients another way to reach their care team between visits.</span></div></li>
+      </ol>
+    </figure>
+  </section>
+  <section class="section problem" id="problem" tabindex="-1">
+    <div class="wrap split">
+      <div><p class="eyebrow">Problem</p><h2>Chronic-care follow-up is stretched thin.</h2></div>
+      <div class="section-copy">
+        <p>When teams are short-staffed, urgent requests can crowd out routine follow-up. A missed call or video visit can make it harder to stay in touch after discharge.</p>
+        <ol class="workflow" role="list">
+          <li><span><strong>Outreach.</strong> Reach each patient.</span></li>
+          <li><span><strong>Status check.</strong> Find out how the patient is doing and what has changed.</span></li>
+          <li><span><strong>Notes.</strong> Write down what happened and transfer the notes into the hospital’s system.</span></li>
+        </ol>
+        <p>These observations come from the founder’s pitch sessions and idea analysis.</p>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section" id="product" tabindex="-1">
+    <div class="product-head"><p class="eyebrow">Product</p><h2>How Wardline could work</h2></div>
+    <div class="product-layout">
+      <article class="panel research">
+        <h3>Fit the hospital’s workflow</h3>
+        <p>Wardline Health envisions an assistant that would learn a hospital’s own care protocols, escalation steps, and documentation patterns over time.</p>
+      </article>
+      <article class="panel">
+        <h3>Support follow-up after discharge</h3>
+        <ol class="workflow" role="list">
+          <li><span>A daily briefing would give nurses and care coordinators a short view of upcoming visits and relevant context from previous interactions.</span></li>
+          <li><span>After a visit, a nurse could log what happened by voice or text. The goal is to reduce the need to write notes on paper and enter them again later.</span></li>
+          <li><span>Patients could have another way to stay in touch between visits. The concept includes exploring support for follow-up in multiple languages.</span></li>
+        </ol>
+        <p>Wardline Health is still defining the first buyer, the budget owner, and how to measure return on investment.</p>
+      </article>
+    </div>
+  </section>
+  <section class="section team" id="team" tabindex="-1">
+    <div class="wrap split">
+      <div><p class="eyebrow">Team</p><h2>Meet the founder</h2></div>
+      <div class="person">
+        <h3>Anita Manokore</h3>
+        <p>Founder, Wardline Health</p>
+        <p>Anita is a software engineer who has worked in a psychology clinic. That experience shaped her interest in how care teams handle follow-up and documentation.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section contact" id="contact" tabindex="-1">
+    <div class="wrap split">
+      <div><p class="eyebrow">Contact</p><h2>Let’s talk about follow-up care.</h2></div>
+      <div>
+        <p class="section-copy">Anita would like to hear from nurses, care coordinators, clinicians, and hospital leaders about how chronic-care follow-up works today and where it becomes difficult. These conversations are exploratory.</p>
+        <dl>
+          <div><dt>Email</dt><dd>[founder email address]</dd></div>
+          <div><dt>Location</dt><dd>[city, state or region]</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap footer-row">
+    <a class="brand" href="#home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Wardline Health<small>Wardline</small></span>
+    </a>
+    <p class="status">Wardline is in the concept stage. The product has yet to be built.</p>
+  </div>
+</footer>
+</body>
+</html>
